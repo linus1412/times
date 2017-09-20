@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.range;
 
 public class TimeExtractor {
 
@@ -23,8 +26,7 @@ public class TimeExtractor {
     Map<DayOfWeek, List<TimeRange>> dayTimes = new HashMap<>();
 
     try {
-
-      for (int i = 0; i < daysBits.length; i++) {
+      range(0, daysBits.length).forEach(i -> {
         int dayInt = Integer.parseInt(daysBits[i]) + 1;
         final DayOfWeek day = DayOfWeek.of(dayInt);
         dayTimes.computeIfAbsent(day, dayOfWeek -> new ArrayList<>())
@@ -34,7 +36,7 @@ public class TimeExtractor {
               .dropOff(LocalTime.parse(closesBits[i]))
               .build()
           );
-      }
+      });
     } catch (NumberFormatException | DateTimeException  e) {
       throw new TimeExtractorException(e);
     }
