@@ -2,9 +2,6 @@ package smitek;
 
 import org.junit.Before;
 import org.junit.Test;
-import smitek.TimeExtractor;
-import smitek.TimeExtractorException;
-import smitek.TimeRange;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
